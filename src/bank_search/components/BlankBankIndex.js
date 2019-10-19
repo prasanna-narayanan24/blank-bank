@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Action from "../constants/actions";
 import { useBlankBankFetch } from '../hooks/useBlankBankFetch';
 import BlankBankCityPicker from './BlankBankCityPicker';
@@ -11,6 +11,7 @@ const BlankBankIndex = props => {
     console.log("Render: ", props);
     const { citiesList, selectedCity, isLoading, favouriteList, searchParam } = props.state;
     const { error } = props.state;
+    const [page, setPage] = useState(1);
 
     useBlankBankFetch(selectedCity);
 
@@ -40,6 +41,7 @@ const BlankBankIndex = props => {
             type: Action.HANDLE_SEARCH_PARAM,
             value: e.target.value
         });
+        setPage(1);
     }
 
     return (
@@ -64,6 +66,8 @@ const BlankBankIndex = props => {
                 !isLoading &&
                 <BlankBankList
                     bankList={bankList}
+                    page={page}
+                    setPage={p => setPage(p)}
                     favouriteList={favouriteList}
                     onFavourite={onFavourite}
                 />

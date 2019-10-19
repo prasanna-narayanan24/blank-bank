@@ -5,9 +5,14 @@ import Modal from '../../common/components/modal';
 import BlankBankShow from './BlankBankShow';
 
 const BlankBankList = props => {
+    const pageSettings = {
+        page: props.page ? props.page : 1,
+        showSize: props.showSize ? props.showSize : 10
+    }
+
     const [tab, setTab] = useState(0);
-    const [page, setPage] = useState(1);
-    const [showSize] = useState(10);
+    const { page, showSize } = pageSettings;
+    const { setPage } = props;
     const [showModal, setShowModal] = useState(false);
     const [selectedBank, setSelectedBank] = useState({});
 

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const Modal = props => {
     const { visible, title, children } = props;
+    if(!visible) {
+        return <React.Fragment></React.Fragment>
+    }
     return <div className="modal fade show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden={visible ? "false" : "true"} style={{ display: visible ? "block" : "none" }}>
         <div className="modal-dialog modal-dialog-centered" role="document" style={{ zIndex: 10000 }}>
             <div className="modal-content">
